@@ -1,6 +1,8 @@
 # Douban Renting House Tool
 
-一款房源信息（豆瓣租房小组）爬虫工具，为来大城市打拼的年轻人们提高房源信息的筛选效率。
+[![Build Status](https://travis-ci.org/zihengCat/douban-renting-house-tool.svg?branch=master)](https://travis-ci.org/zihengCat/douban-renting-house-tool)
+
+一款房源信息（豆瓣租房小组）筛选爬虫工具，为来大城市打拼的年轻人们提高租房信息筛选效率。
 
 # Usage（使用说明）
 
@@ -11,7 +13,7 @@
 
 # Example（实例讲解）
 
-从**豆瓣杭州租房小组**中抓取**前1000条**房源信息，以**关键词"滨江"**进行过滤。
+从**豆瓣杭州租房小组**中抓取**前`1000`条**房源信息，以**关键词`滨江`**进行过滤。
 
 ```
 $ python3 douban_renting_house.py -l 1000 -s '滨江'

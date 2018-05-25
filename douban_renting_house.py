@@ -5,10 +5,10 @@ import requests
 import bs4
 
 # Douban house renting groups
-MAIN_URL = {
-    'Hangzhou': 'https://www.douban.com/group/145219/',
-    'Beijing' : 'https://www.douban.com/group/fangzi/',
-    'Shanghai': 'https://www.douban.com/group/shanghaizufang/'
+MAIN_URLS = {
+    'hangzhou': 'https://www.douban.com/group/145219/',
+    'beijing' : 'https://www.douban.com/group/fangzi/',
+    'shanghai': 'https://www.douban.com/group/shanghaizufang/'
 }
 
 # Open URL, return HTML data
@@ -52,7 +52,7 @@ def main():
     # Set default arguments
     s = ''
     l = 1000
-    r = 'Hangzhou'
+    r = 'hangzhou'
     # Set CLI arguments
     if(args.search != None):
         s = args.search
@@ -60,12 +60,11 @@ def main():
         l = args.limit
     if(args.region != None):
         r = args.region
-
     # form 0 to limit, step 25
     for i in range(0, int(l), 25):
-        r = open_url(MAIN_URL[r] + 'discussion' + '?start=' + str(i))
-        t = find_target(r)
-        find_keyword(t, s)
+        html = open_url(MAIN_URLS[r] + 'discussion' + '?start=' + str(i))
+        target = find_target(html)
+        find_keyword(target, s)
 
 if __name__ == '__main__':
     main()

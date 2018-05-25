@@ -4,8 +4,12 @@ import argparse
 import requests
 import bs4
 
-# Douban Hangzhou house renting group
-MAIN_URL = 'https://www.douban.com/group/145219/'
+# Douban house renting groups
+MAIN_URL = {
+    'Hangzhou': 'https://www.douban.com/group/145219/',
+    'Beijing' : 'https://www.douban.com/group/fangzi/',
+    'Shanghai': 'https://www.douban.com/group/shanghaizufang/'
+}
 
 # Open URL, return HTML data
 def open_url(url):
@@ -40,21 +44,28 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('-s', '--search', help='search keywords')
     parser.add_argument('-l', '--limit',  help='records limitation')
+    parser.add_argument('-r', '--region', help='regions')
     args = parser.parse_args()
     # Get the CLI arguments
-    s = args.search; l = args.limit
+    # s = args.search; l = args.limit; r = args.region;
 
     # Set default arguments
-    if (s == None and s == None):
-        s = ''
-        l = 1000
+    s = ''
+    l = 1000
+    r = 'Hangzhou'
+    # Set CLI arguments
+    if(args.search != None):
+        s = args.search
+    if(args.limit != None):
+        l = args.limit
+    if(args.region != None):
+        r = args.region
 
     # form 0 to limit, step 25
     for i in range(0, int(l), 25):
-        r = open_url(MAIN_URL + 'discussion' + '?start=' + str(i))
+        r = open_url(MAIN_URL[r] + 'discussion' + '?start=' + str(i))
         t = find_target(r)
         find_keyword(t, s)
-
 
 if __name__ == '__main__':
     main()

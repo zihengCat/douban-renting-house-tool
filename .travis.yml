@@ -7,7 +7,7 @@ before_script:
     - "pip3 install -r requirements.txt"
 
 script:
-    - "python3 douban_renting_house.py -r 'Hangzhou' -s '租房' -l 1000"
+    - "python3 douban_renting_house.py -r 'hangzhou' -s '租房' -l 1000"
 
 after_script:
     - "echo ${?}"
